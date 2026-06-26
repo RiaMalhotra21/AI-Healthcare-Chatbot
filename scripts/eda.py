@@ -1,13 +1,13 @@
-import pandas as pd
+from pathlib import Path
+
 import matplotlib.pyplot as plt
+import pandas as pd
 
-# Load your dataset
-df = pd.read_csv('Medical Recommendation System\Training.csv')
+TRAINING_CSV = Path(__file__).resolve().parents[1] / "data" / "raw" / "Training.csv"
 
-# Get the count of each disease (prognosis)
+df = pd.read_csv(TRAINING_CSV)
 disease_counts = df['prognosis'].value_counts().sort_values(ascending=False)
 
-# Plotting the distribution
 plt.figure(figsize=(12, 8))
 disease_counts.plot(kind='bar', color='coral')
 plt.title('Class Distribution: Number of Cases per Disease', fontsize=16)
